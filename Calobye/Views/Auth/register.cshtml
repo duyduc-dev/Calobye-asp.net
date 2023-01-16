@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "Đăng ký thành viên";
+}
+
+<section class="pb-20 bg-slate-50">
+	<!-- Begin: login  -->
+	<div class="h-full flex justify-center py-10">
+		<div class="bg-white border-2 border-white_smoke_2 flex flex-col w-c-md pb-10">
+			<!-- Begin: Header login -->
+			<div class="flex flex-col">
+				@using (Html.BeginForm("register", "Auth", FormMethod.Post, new { @class = "max-w-[350px] w-full mx-auto mt-5 px-5" }))
+				{
+					@Html.AntiForgeryToken()
+					<div class="text-center block font-bold text-[25px] text-rosy_pink my-5">Đăng ký thành viên</div>
+					<div class="mt-10">
+						<p style="color: green" class="mt-2 ml-2 text-center">@ViewBag.result</p>
+					</div>
+					<div class="mt-6">
+						<div class="text-sm">
+							<label for="firstname" class="block basis-2/6 font-semibold mb-2">Họ:</label>
+							<input type="text"
+										 id="firstname"
+										 name="firstname"
+										 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+										 placeholder="Peter"
+										 required
+										 autocomplete="off" />
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validateFristname</p>
+						</div>
+					</div>
+					<!-- Begin: form input -->
+					<div class="mt-5">
+						<div class="text-sm">
+							<label for="lastname" class="block basis-2/6 font-semibold mb-2">Tên:</label>
+							<input type="text"
+										 id="lastname"
+										 name="lastname"
+										 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+										 placeholder="Parker"
+										 required
+										 autocomplete="off" />
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validateLastname</p>
+						</div>
+					</div>
+					<!-- End: form input -->
+					<!-- Begin: form input -->
+					<div class="mt-5">
+						<div class="text-sm">
+							<label for="phone" class="block basis-2/6 font-semibold mb-2">Số điện thoại:</label>
+							<input type="text"
+										 id="phone"
+										 name="phone"
+										 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+										 placeholder="0964******"
+										 required
+										 autocomplete="off" />
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validatePhone</p>
+						</div>
+					</div>
+					<!-- End: form input -->
+					<!-- Begin: form input -->
+					<div class="mt-5">
+						<div class="text-sm">
+							<label for="order_address" class="block basis-2/6 font-semibold mb-2">Địa chỉ đặt hàng:</label>
+							<input type="text"
+										 id="order_address"
+										 name="order_address"
+										 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+										 placeholder="Vườn lài, An Phú Đông, ******"
+										 required
+										 autocomplete="off" />
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validateOrderAddress</p>
+						</div>
+					</div>
+					<!-- End: form input -->
+					<!-- Begin: form input -->
+					<div class="mt-5">
+						<div class="text-sm">
+							<label for="email" class="block basis-2/6 font-semibold mb-2">Email:</label>
+							<input type="email"
+										 id="email"
+										 name="email"
+										 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+										 placeholder="abc@gmail.com"
+										 required
+										 autocomplete="off" />
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validateEmail</p>
+						</div>
+					</div>
+					<!-- End: form input -->
+					<!-- Begin: form input -->
+					<div class="mt-5">
+						<div class="text-sm">
+							<label for="username" class="block basis-2/6 font-semibold mb-2">Tên đăng nhập:</label>
+							<input type="text"
+										 id="username"
+										 name="username"
+										 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+										 placeholder="abc@123"
+										 required
+										 autocomplete="off" />
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validateUserName</p>
+						</div>
+					</div>
+					<!-- End: form input -->
+					<!-- Begin: form input -->
+					<div class="mt-5">
+						<div class="text-sm">
+							<label for="password" class="block basis-2/6 font-semibold mb-2">Mật khẩu:</label>
+							<div class="relative">
+								<input type="password"
+											 id="password"
+											 name="password"
+											 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+											 placeholder="******"
+											 required
+											 autocomplete="off" />
+								<div id="show-password" class="cursor-pointer absolute top-1/2 -translate-y-1/2 right-4">
+									@*<i class="fa-solid fa-eye"></i>*@
+									<i class="fa-solid fa-eye-slash"></i>
+								</div>
+							</div>
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validatePassword</p>
+						</div>
+					</div>
+					<!-- End: form input -->
+					<!-- Begin: form input -->
+					<div class="mt-5">
+						<div class="text-sm">
+							<label for="password_again" class="block basis-2/6 font-semibold mb-2">Nhập lại mật khẩu:</label>
+							<input type="password"
+											id="password_again"
+											name="password_again"
+											class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 transition-all duration-100 focus:border-rosy_pink block p-2.5 w-full"
+											placeholder="******"
+											required
+											autocomplete="off" />
+								
+							<p class="text-red-500 mt-2 ml-2">@ViewBag.validatePasswordAgain</p>
+						</div>
+					</div>
+					<!-- End: form input -->
+					<div class="mt-5">
+						<input type="checkbox" name="" id="agree-register" />
+						<label for="agree-register" class="text-sm cursor-pointer select-none">
+							Tôi đổng ý với <span class="text-rosy_pink font-bold">Điều khoản và điều kiện</span> và
+							<span class="text-rosy_pink font-bold">Chính sách quyền riêng tư</span>.
+						</label>
+					</div>
+					<div class="w-full flex justify-center">
+						<button id="btn-register"
+										type="submit"
+										class="disabled:bg-red-300 w-full sm:w-[50%] font-semibold text-base bg-rose-500 text-white py-4 mt-8 rounded-lg">
+							Đăng ký
+						</button>
+					</div>
+					<div class="border-b mt-10 flex items-center pb-2 text-sm">
+						<div class="w-1/2 text-center border-r text-judge_grey font-bold">
+							<a href="/auth/forgot-password">Quên mật khẩu</a>
+						</div>
+						<div class="w-1/2 text-center text-rosy_pink font-bold">
+							<a href="/auth/login">Đăng nhập</a>
+						</div>
+					</div>
+				}
+				<form class="">
+				</form>
+			</div>
+			<!-- End: Header login -->
+		</div>
+	</div>
+	<!-- End: login  -->
+</section>
+
+@section scripts {
+	<script type="module" src="~/Assets/js/pages/Register.js"></script>
+}

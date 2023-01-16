@@ -1,0 +1,96 @@
+﻿@using Calobye.Services
+@{ 
+	var isLogin = AuthService.isLogin();
+
+}
+<div>
+	<!-- Begin: Sidebar inner -->
+	<div id="sidebar"
+			 class="bg-white w-4/5 fixed top-0 left-0 bottom-0 z-[101] transition-all duration-500 -translate-x-[200%] border-t-[3px] border-rosy_pink">
+		<!-- Begin: Body sidebar -->
+		<div class="">
+			<p class="text-center text-[11px] py-[30px] leading-[15px] text-dark_charcoal_gray">
+				@if (!isLogin)
+				{
+					<!-- Begin: non-login -->
+					<span class="block">
+						Đăng nhập để biết thêm <br />
+						thông tin và lợi ích
+					</span>
+					<!-- End: non-login -->
+				}
+				else
+				{
+					<!-- Begin: login -->
+					<span class="">
+						Bạn đã đăng nhập <br />
+						bắt đầu ăn kiêng với chúng tôi
+					</span>
+					<!-- End: login -->
+				}
+
+			</p>
+			<div class="max-w-[80%] w-full mx-auto text-[12px] font-bold mb-6">
+				@if (!isLogin)
+				{
+					<!-- Begin: non-login -->
+					<div class="block">
+						<div class="flex gap-2">
+							<a href="@Url.Action("login", "Auth")"
+								 class="block w-1/2 bg-rosy_pink text-white py-3 px-1 border text-center leading-none text-xs border-[#e5e7eb]">
+								Đăng nhập
+							</a>
+							<a href="@Url.Action("register", "Auth")"
+								 class="block w-1/2 bg-gray-500 py-3 px-1 text-white text-center text-xs leading-none border">Đăng ký</a>
+						</div>
+					</div>
+					<!-- End: non-login -->
+				}
+				else
+				{
+					<!-- Begin: login -->
+					<div class="">
+						<div class="w-full">
+							<a href="@Url.Action("signout", "Auth")" class="block w-5/6 mx-auto bg-gray-500 py-3 px-1 text-white text-center text-xs leading-none border">Đăng xuất</a>
+						</div>
+					</div>
+					<!-- End: login -->
+				}
+
+			</div>
+			<div class="flex bg-white text-[11px] border-y border-mercury_gray">
+				<a href="@Url.Action("Index", "User")"
+					 class="flex items-center py-3 px-4 w-full basis-6/12 justify-center gap-2 border-r text-dark_charcoal_gray">
+					<div class="w-[20px] h-auto">
+						<img src="~/Assets/icon/user-mobile.gif" alt="" class="w-full" />
+					</div>
+					<span>Trang của tôi</span>
+				</a>
+				@Html.Action("_CartAmountSidebar", "Cart")
+			</div>
+			
+			@Html.Action("_CategorySidebar", "Category")
+
+			<div class="flex flex-col px-6 py-3">
+				<span class="font-bold text-xs text-black">Trung tâm CSKH (Đặng Duy Đức - 2100008202)</span>
+				<span class="text-[25px] text-rosy_pink">0946 407 647</span>
+				<span class="text-[10px] leading-[14px] text-dark_grey_999">
+					GIỜ MỞ CỬA 08:00 - 17:00 <br />
+					NGHỈ CHỦ NHẬT, NGÀY LỄ
+				</span>
+			</div>
+		</div>
+		<!-- End: Body sidebar -->
+		<!-- Begin: Icon close sidebar -->
+		<div onclick-close-sidebar class="w-[40px] absolute left-[calc(100%_+_5px)] top-[5px] cursor-pointer">
+			<img src="~/Assets/icon/icon_close_bg-black.gif" alt="w-full" />
+		</div>
+		<!-- End: Icon close sidebar -->
+	</div>
+	<!-- End: Sidebar inner -->
+	<!-- Begin: overlay when sidebar active -->
+	<div onclick-close-sidebar
+			 id="overlay-sidebar"
+			 class="bg-drop_black fixed top-0 left-0 bottom-0 right-0 z-[100] transition-all duration-500 opacity-0 pointer-events-none"></div>
+	<!-- End: overlay when sidebar active -->
+</div>

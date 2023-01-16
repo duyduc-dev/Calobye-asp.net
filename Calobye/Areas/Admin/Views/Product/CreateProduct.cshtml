@@ -1,0 +1,112 @@
+﻿@using Calobye.Utils
+@{
+	ViewBag.Title = "New Product";
+	var categories = ViewBag.categories as List<Calobye.Models.CATEGORY>;
+
+}
+
+
+<main id="main" class="main transitrion">
+	<div class="pagetitle">
+		<h1>Create Product</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Product")">Product</a></li>
+				<li class="breadcrumb-item active">Create Product</li>
+			</ol>
+		</nav>
+	</div>
+	<section class="section profile">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body pt-3">
+						<a href="@Url.Action("Index", "Product")" class="btn btn-primary">
+							<i class="ri-arrow-go-back-line"></i>
+						</a>
+						<div class="profile-edit pt-3" id="profile-edit">
+							@using (Html.BeginForm("CreateProduct", "Product", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+							{
+								@Html.AntiForgeryToken()
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Thumbnail</label>
+									<div class="col-md-8 col-lg-9">
+										<img show-preview src="~/Assets/images/placeholder-img.jpg" alt="Profile" class="box-shadow">
+										<input type="file" preview-image name="thumbnail" id="thumbnail" accept="image/*" class="d-none" />
+										<div class="pt-2">
+											<label for="thumbnail" class="btn btn-primary btn-sm text-white" title="Upload new profile image">
+												<i class="bi bi-upload"></i>
+											</label>
+											<div clear-preview class="btn btn-danger btn-sm" title="Remove my profile image">
+												<i class="bi bi-trash"></i>
+											</div>
+										</div>
+										<div class="text-danger fs-6">@ViewBag.validateThumbnail</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="title" class="col-md-4 col-lg-3 col-form-label">Title</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="title" autocomplete="off" type="text" class="form-control" id="title" value="">
+										<div class="text-danger fs-6">@ViewBag.validateTitle</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="slug" class="col-md-4 col-lg-3 col-form-label">Slug</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="slug" type="text" autocomplete="off" class="form-control" readonly id="slug" value="">
+										<div class="text-danger fs-6">@ViewBag.validateSlug</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="description" class="col-md-4 col-lg-3 col-form-label">Description</label>
+									<div class="col-md-8 col-lg-9">
+										<textarea name="description" autocomplete="off" class="form-control" id="description" style="height: 100px"></textarea>
+										<div class="text-danger fs-6">@ViewBag.validateDesc</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="price" class="col-md-4 col-lg-3 col-form-label">Price</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="price" autocomplete="off" type="text" class="form-control" id="price" value="">
+										<div class="text-danger fs-6">@ViewBag.validatePrice</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="category_id" class="col-md-4 col-lg-3 col-form-label">Category</label>
+									<div class="col-md-8 col-lg-9">
+										<select id="category_id" class="form-select" aria-label="Default select example" name="category_id">
+											@foreach (var i in categories)
+											{
+												<option value="@i.ID">@i.TITLE</option>
+											}
+										</select>
+									</div>
+								</div>
+
+								
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary">Create</button>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</section>
+</main>
+
+@section styles{
+	<link href="~/Areas/Admin/Assets/css/main.css" rel="stylesheet" />
+}
+
+@section scripts{
+	<script src="~/Assets/lib/slugify.js"></script>
+	<script type="module" src="~/Areas/Admin/Assets/js/modules/product.js"></script>
+}
+
+

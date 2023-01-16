@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>@ViewBag.Title  - Admin Calobye</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+	<link href="~/Areas/Admin/Assets/img/favicon.png" rel="icon">
+	<link href="~/Areas/Admin/Assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+	<link href="https://fonts.gstatic.com" rel="preconnect">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/bootstrap-icons.css" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/boxicons.min.css" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/quill.snow.css" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/quill.bubble.css" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/remixicon.css" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/simple-datatables.css" rel="stylesheet">
+	<link href="~/Areas/Admin/Assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+	@RenderBody()
+
+	@using Calobye.Utils
+	@if (ViewBag.isShowToast != null)
+	{
+		@Html.Toast()
+	}
+
+
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+	<script src="~/Areas/Admin/Assets/js/apexcharts.min.js"></script>
+	<script src="~/Areas/Admin/Assets/js/bootstrap.bundle.min.js"></script>
+	<script src="~/Areas/Admin/Assets/js/chart.min.js"></script>
+	<script src="~/Areas/Admin/Assets/js/echarts.min.js"></script>
+	<script src="~/Areas/Admin/Assets/js/quill.min.js"></script>
+	<script src="~/Areas/Admin/Assets/js/simple-datatables.js"></script>
+	<script src="~/Areas/Admin/Assets/js/tinymce.min.js"></script>
+	<script src="~/Areas/Admin/Assets/js/validate.js"></script>
+	<script src="~/Assets/lib/jquery-3.6.1.js"></script>
+	<script type="module" src="~/Areas/Admin/Assets/js/main.js"></script>
+
+</body>
+</html>

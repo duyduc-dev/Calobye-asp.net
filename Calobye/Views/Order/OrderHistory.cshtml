@@ -1,0 +1,62 @@
+﻿
+@using Calobye.Constants
+@model List<Calobye.Models.OrderHistory>
+@{
+	ViewBag.Title = "Đặt hàng thành công - Caloybye";
+
+	Func<bool, string> deliveryStatus = (bool status) => status == false ? DeliveryStatus.NOT_RECEIVED_VN : DeliveryStatus.RECEIVED_VN;
+	Func<bool, string> paid = (bool status) => status == false ? Paid.UNPAID_VN : Paid.PAID_VN;
+}
+
+<section class="pb-20">
+	<div class="custom_xl:w-75 mx-3 custom_xl:mx-auto">
+		<div class="mt-[50px] font-bold text-[25px] border-l-4 pl-3 border-black">Lịch sử đặt hàng</div>
+		<div class="mt-[20px] p-[20px] sm:p-[45px] border bg-very_light_gray">
+		@if (Model.Count > 0)
+		{
+
+			foreach (var i in Model)
+			{
+				<!-- Begin: product -->
+				<div class="bg-white mt-2">
+					<!-- Begin: Have product 1 -->
+					<div class="border">
+						<div class="">
+							<div class="flex md:flex-row flex-col">
+								<a href="@Url.Action("Index", "Product", new { slug = i.Product.SLUG })" class="block pt-[10px] pl-[28px] pr-[20px]">
+									<img src="~/Assets/images/product/@i.Product.THUMBNAIL" alt="" class="w-[102px] h-[102px] object-contain" />
+								</a>
+								<div class="pl-[20px] pr-5 flex-1 text-dark_charcoal_gray text-[14px] font-[600] flex items-center md:mt-0 mt-3">
+									@i.Product.TITLE
+								</div>
+								<div class="pl-[20px] flex items-center font-bold text-[14px] md:mt-0 mt-3">
+									<span class="text-rosy_pink mr-2">Số lượng:</span> @i.Amount
+								</div>
+								<div class="pr-[20px] flex items-center justify-end md:justify-start border-t md:border-t-0 mt-5 md:mt-0 py-5 md:py-0">
+									<div class="text-[12px] text-dark_grey_999">
+										<span class="text-[20px] text-rosy_pink font-bold md:border-l-2 ml-3 border-dark_grey_999 pl-5" data-format-money="@i.Total"></span>VND
+									</div>
+									<div class="flex items-center mx-5 mr-2 p-2 border border-rosy_pink text-rosy_pink font-bold text-center @(i.isPaid ? "border-rosy_pink text-rosy_pink" : "text-orangered border-orangered")">@paid(i.isPaid)</div>
+									<div class="flex items-center mx-5 ml-1 p-2 border font-bold text-center @(i.DeliveryStatus ? "border-rosy_pink text-rosy_pink" : "text-cornflowerblue border-cornflowerblue")" >@deliveryStatus(i.DeliveryStatus)</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End: Have product 1 -->
+				</div>
+				<!-- End: product -->
+			}
+
+		} else 
+		{
+			<div class="bg-white border p-5">
+				<div class="text-center font-bold ">Bạn chưa đặt đơn hàng nào trước đây.</div>
+			</div>
+		}
+		</div>
+	
+	</div>
+</section>
+
+
+

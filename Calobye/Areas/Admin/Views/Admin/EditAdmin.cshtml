@@ -1,0 +1,123 @@
+﻿@model Calobye.Models.admin
+@{
+	ViewBag.Title = "Detail Admin";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+	Func<bool> isAdminDefault = () => "calobyeadmin.asia@gmail.com" == Model.email;
+
+}
+
+
+<main id="main" class="main transitrion">
+	<div class="pagetitle">
+		<h1>Detail Admin</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Admin")">Admin</a></li>
+				<li class="breadcrumb-item active">@Model.email</li>
+			</ol>
+		</nav>
+	</div>
+	<section class="section profile">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body pt-3">
+						<a href="@Url.Action("Index", "Admin")" class="btn btn-primary">
+							<i class="ri-arrow-go-back-line"></i>
+						</a>
+						<div class="profile-edit pt-3" id="profile-edit">
+							@using (Html.BeginForm("EditAdmin", "Admin", new { area = "Admin", admin_id = Model.id.Trim() }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+							{
+								@Html.AntiForgeryToken()
+								<div class="row mb-3">
+									<label for="title" class="col-md-4 col-lg-3 col-form-label">Admin ID</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">@Model.id</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="avatar" class="col-md-4 col-lg-3 col-form-label">Avatar</label>
+									<div class="col-md-8 col-lg-9">
+										<img show-preview src="~/Areas/Admin/Assets/img/avatar-admin/@Model.avatar" alt="Profile" class="box-shadow">
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="firstname" class="col-md-4 col-lg-3 col-form-label">First name</label>
+									<div class="col-md-8 col-lg-9">
+										@if (isAdminDefault())
+										{
+											<div class="col-md-8 col-lg-9">
+												<div class="d-flex align-items-center h-100">@Model.firstname</div>
+											</div>
+										}
+										else
+										{
+											<input name="firstname" autocomplete="off" type="text" class="form-control" id="firstname" value="@Model.firstname">
+											<div class="text-danger fs-6">@ViewBag.validateFirstName</div>
+										}
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="lastname" class="col-md-4 col-lg-3 col-form-label">Last name</label>
+									<div class="col-md-8 col-lg-9">
+										@if (isAdminDefault())
+										{
+											<div class="col-md-8 col-lg-9">
+												<div class="d-flex align-items-center h-100">@Model.lastname</div>
+											</div>
+										}
+										else
+										{
+											<input name="lastname" type="text" autocomplete="off" class="form-control" id="lastname" value="@Model.lastname">
+											<div class="text-danger fs-6">@ViewBag.validateLastName</div>
+										}
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+									<div class="col-md-8 col-lg-9">
+										@if (isAdminDefault())
+										{
+											<div class="col-md-8 col-lg-9">
+												<div class="d-flex align-items-center h-100">@Model.email</div>
+											</div>
+										}
+										else
+										{
+											<input name="email" autocomplete="off" type="text" class="form-control" id="email" value="@Model.email">
+											<div class="text-danger fs-6">@ViewBag.validateEmail</div>
+										}
+
+									</div>
+								</div>
+								if (!isAdminDefault())
+								{
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Save Changes</button>
+									</div>
+								}
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</main>
+
+@section styles{
+	<link href="~/Areas/Admin/Assets/css/main.css" rel="stylesheet" />
+}
+
+@section scripts{
+	<script src="~/Assets/lib/slugify.js"></script>
+	<script type="module" src="~/Areas/Admin/Assets/js/modules/product.js"></script>
+}
+
+
+
+

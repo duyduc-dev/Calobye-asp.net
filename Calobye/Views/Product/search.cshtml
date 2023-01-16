@@ -1,0 +1,55 @@
+﻿@using Newtonsoft.Json
+@model List<Calobye.Models.PRODUCT>
+@{
+	ViewBag.Title = ViewBag.q + " - Calobye";
+}
+
+<section class="py-[40px]">
+	<!-- ! RENDER_BODY() -->
+	<div class="custom_xl:w-75 mx-auto px-4 custom_xl:px-0">
+		<div>
+		
+			<h3 class="text-xl text-dark_charcoal_gray pl-[13px] font-bold border-l-3 border-l-dark_charcoal_gray">
+				Kết quả tìm kiếm: "@ViewBag.q"
+			</h3>
+			
+		</div>
+		<div class="mt-10" id="pagination-product">
+			<div class="grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-[35px]" id="pagination-container">
+				@*<a href="#"
+							class="block relative text-center md:h-[570px] md:border md:border-light_gray_2 hover:border-rosy_pink cursor-pointer">
+						<div>
+							<img src="~/Assets/images/product/1.jpg"
+										alt=""
+										class="rounded-xl md:rounded-none object-contain w-full max-h-[350px] md:min-h-[350px]" />
+						</div>
+						<div>
+							<div class="my-7.5 text-sm md:text-base md:px-3">
+								<h4 class="text-haft_text hidden md:block truncate">Combo Bổ Sung Năng Lượng Da Meal &amp; Life Protein</h4>
+								<h5 class="text-grey_text_88 truncate">Bổ sung dinh dưỡng và năng lượng cần thiết cho cơ thể</h5>
+								<div class="flex flex-col md:flex-row items-start md:items-center justify-center w-full">
+									<div class="mt-4 md:mt-2 font-bold text-lg md:text-2xl">1,090,000</div>
+								</div>
+							</div>
+						</div>
+					</a>*@
+			</div>
+		</div>
+		</div>
+</section>
+
+
+@section paginationCss{
+	<link rel="stylesheet" href="~/Assets/lib/panigation.js/pagination.css" />
+}
+
+@section paginationJs {
+	<script src="~/Assets/lib/panigation.js/pagination@2.4.1.js"></script>
+}
+	
+@section scripts {
+	<script>
+		const type = "@ViewBag.type";
+	</script>
+	<script type="module" src="~/Assets/js/pages/Products.js"></script>
+}

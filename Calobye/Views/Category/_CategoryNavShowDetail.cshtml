@@ -1,0 +1,59 @@
+﻿@using Calobye.Models
+@model List<CATEGORY>
+
+<div id="category-active"
+		 class="absolute top-[unset] hidden lg:block w-full bg-white transition-all duration-500 translate-y-[-200%] z-[50] opacity-0">
+	<div class="max-w-75 mx-auto mt-[50px] text-dark_grey_999">
+		<div class="flex flex-row w-full">
+			@foreach (var item in Model)
+			{
+				if (item.PARENT_ID == null)
+				{
+					<!-- Begin: col category -->
+					<div class="flex flex-col min-w-[120px] mx-2.5">
+						<a href="/category/@item.SLUG"
+							 class="text-[17px] pb-[5px] mb-[15px] border-b-[2px] border-grey_999 cursor-pointer hover:text-rosy_pink hover:border-rosy_pink truncate mx-1">
+							@item.TITLE
+						</a>
+						@foreach(var a in Model)
+						{
+							if(a.PARENT_ID != null && a.PARENT_ID.Equals(item.ID))
+							{
+								<a href="/category/@a.SLUG" class="mt-2 cursor-pointer hover:text-rosy_pink mx-1">@a.TITLE</a>
+							}
+						}
+					</div>
+					<!-- End: col category -->
+				}
+			}
+
+
+
+
+			<!-- Begin: col category -->
+			@*<div class="flex flex-col min-w-[120px] mx-2.5">
+				<a href="#"
+					 class="text-[17px] pb-[5px] mb-[15px] border-b-[2px] border-grey_999 cursor-pointer hover:text-rosy_pink hover:border-rosy_pink truncate mx-1">
+					Ăn kiêng
+				</a>
+				<a href="#" class="mt-2 cursor-pointer hover:text-rosy_pink mx-1">Ăn nhẹ</a>
+				<a href="#" class="mt-2 cursor-pointer hover:text-rosy_pink mx-1">Bữa ăn thay thế</a>
+				<a href="#" class="mt-2 cursor-pointer hover:text-rosy_pink mx-1">Chăm sóc cơ thể</a>
+			</div>*@
+			<!-- End: col category -->
+		</div>
+	</div>
+
+
+	<!-- Begin: area close nav menu -->
+	<div class="relative mt-[55px] text-[20px] border-t-2 border-white_smoke_2 pr-5">
+		<div class="max-w-75 mx-auto py-[30px] flex justify-end">
+			<div id="close-nav-menu" class="cursor-pointer flex items-center hover:text-rosy_pink">
+				<span class="text-[14px] mr-4">Đóng</span>
+				<img src="~/Assets/icon/close_icon.gif" alt="" />
+			</div>
+		</div>
+	</div>
+	<!-- End: area close nav menu -->
+</div>
+

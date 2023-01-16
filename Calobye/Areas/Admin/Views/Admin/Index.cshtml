@@ -1,0 +1,93 @@
+﻿@using Calobye.Constants
+@model List<Calobye.Models.admin>
+@{
+	ViewBag.Title = "Admin Management";
+	ViewBag.adminActive = "active";
+	Func<int, Calobye.Models.admin> item = (int i) => Model.ElementAt(i);
+
+	var currentAd = Calobye.Services.AdminAuthService.getAdmin();
+	Func<int, bool> isAdminDefault = (int i) => "calobyeadmin.asia@gmail.com" == item(i).email;
+}
+
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h1>Admin Management</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="@Url.Action("index", "Home")">Home</a></li>
+				<li class="breadcrumb-item active">Admin</li>
+			</ol>
+		</nav>
+	</div>
+	<section class="section">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="d-flex align-items-center justify-content-between">
+							<h5 class="card-title">Admin Management</h5>
+							<div>
+								<a href="@Url.Action("CreateAdmin", "Admin", new { area="Admin" })" class="btn btn-primary">New Admin</a>
+							</div>
+						</div>
+						<table class="table datatable">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Avatar</th>
+									<th scope="col">Full name</th>
+									<th scope="col">Email</th>
+									<th scope="col">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (int i = 0; i < Model.Count; ++i)
+								{
+									<tr>
+										<th scope="row" style="vertical-align: middle">@(i + 1)</th>
+										<td style="vertical-align: middle">
+											<div class="avatar-admin">
+												<img src="~/Areas/Admin/Assets/img/avatar-admin/@item(i).avatar" alt="Alternate Text" class="w-100" />
+											</div>
+										</td>
+										<td style="vertical-align: middle">
+											<div>
+												@item(i).firstname @item(i).lastname
+												@if (isAdminDefault(i))
+												{
+													<span class="fw-bold text-danger">(Admin Default)</span>
+												}
+												@if (currentAd.id.Equals(item(i).id))
+												{
+													<span class="fw-bold">(You)</span>
+												}
+											</div>
+										</td>
+										<td style="vertical-align: middle">@item(i).email </td>
+										<td style="vertical-align: middle">
+											<div class="dropdown">
+												<a class="btn bg-white border dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+													Action
+												</a>
+												<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+													<li><a href="@Url.Action("EditAdmin", "Admin", new {area="Admin", admin_id=item(i).id.Trim() } )" class="dropdown-item">Detail</a></li>
+													<li><a href="@Url.Action("DeleteAdmin", "Admin", new {area="Admin", adminID=item(i).id.Trim() })" class="dropdown-item">Delete</a></li>
+
+												</ul>
+											</div>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</main>
+
+@section styles{
+	<link href="~/Areas/Admin/Assets/css/main.css" rel="stylesheet" />
+}

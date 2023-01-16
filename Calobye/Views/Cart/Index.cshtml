@@ -1,0 +1,157 @@
+﻿@model List<Calobye.Models.Cart>
+@{
+    ViewBag.Title = "Giỏ hàng - Calobye";
+}
+
+<section  class="pb-20">
+	<div class="custom_xl:w-75 mx-3 custom_xl:mx-auto">
+		<div class="mt-[80px]">
+			<div class="relative flex text-left flex-row items-center">
+				<h3 class="text-xl text-dark_charcoal_gray pl-[13px] font-bold border-l-3 border-l-dark_charcoal_gray">Giỏ hàng</h3>
+				<div class="flex items-center">
+					<label for=":r1:"
+								 class="ml-2.5 pl-2.5 border-l border-mercury_gray text-[15px] text-light_gray font-normal leading-5 select-none cursor-pointer">ORDER</label>
+				</div>
+			</div>
+		</div>
+		<div class="mt-[20px] p-[20px] sm:p-[45px] border bg-very_light_gray">
+			<!-- !product cart -->
+
+			@if (Model.Count() <= 0)
+			{
+				<div class="bg-white">
+					<!-- Begin: Cart don't have product -->
+					<table class="w-full">
+						<thead class="hidden sm:block border border-mercury_gray">
+							<tr class="w-full text-[13px] leading-[55px] text-dark_charcoal_gray">
+								<th class="max-w-[543px] w-[200px] md:w-[543px]">productName/option</th>
+								<th class="max-w-[65px] w-[200px] md:w-[543px]">Số lượng</th>
+								<th class="w-[205px]">Số tiền đặt hàng</th>
+								<th class="w-[105px]">Phí vận chuyển</th>
+								<th class="w-[153px]">Etc</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="5"
+										class="py-[70px] bg-white border border-mercury_gray text-center text-[11px] text-dark_grey_999">
+									Không có sản phẩm nào trong giỏ hàng.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- End: Cart don't have product -->
+				</div>
+
+			}
+			else
+			{
+				foreach (var i in Model)
+				{
+					<div class="bg-white mt-5 first:mt-0">
+						<!-- Begin: Have product 1 -->
+						<div class="border">
+							<div class="flex items-center justify-between p-[20px] border-b">
+								<a href="@Url.Action("Index", "Product", new { slug = i.Product.SLUG })" class="block text-dark_charcoal_gray text-[14px] font-[600]">
+									@i.Product.TITLE
+								</a>
+								<a href="@Url.Action("DeleteProductInCartByID","Cart", new { productID = i.Product.ID })" class="block cursor-pointer ml-4">
+									<img src="~/Assets/icon/delete_icon.png" alt="" class="w-[20px]" />
+								</a>
+							</div>
+							<div class="">
+								<div class="flex md:flex-row flex-col">
+									<a href="@Url.Action("Index", "Product", new { slug = i.Product.SLUG })" class="block pt-[10px] pl-[28px] pr-[20px] mb-2">
+										<img src="~/Assets/images/product/@i.Product.THUMBNAIL" alt="" class="w-[102px] h-[102px] object-contain" />
+									</a>
+									<div class="flex-1 w-full flex items-center justify-end">
+										<div class="flex-1 flex items-center justify-end">
+											<div class="basis-1/2 flex items-center justify-center max-w-[120px] w-full text-dark_grey_999 text-[12px]">
+												<span>Số lượng: </span>
+												<span class="mx-4">@i.amount</span>
+											</div>
+											<div class="basis-1/2 flex justify-end font-bold text-[12px] px-8 text-dark_grey_999" data-format-money="@i.Product.PRICE">0</div>
+										</div>
+									</div>
+									<div class="pr-[20px] flex items-center justify-end md:justify-start border-t md:border-t-0 mt-5 md:mt-0 py-5 md:py-0">
+										<div class="text-[12px] text-dark_grey_999">
+											<span class="text-[20px] text-rosy_pink font-bold md:border-l-2 border-dark_grey_999 pl-5" data-format-money="@i.total">0</span>VND
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- End: Have product 1 -->
+					</div>
+
+				}
+			}
+
+		</div>
+		<div class="ml-[12px] sm:ml-0 mt-2 pb-[52px] text-[11px] text-dark_grey_999">
+			Nếu sản phẩm được vận chuyển ra nước ngoài có thể áp dụng phí vận chuyển bổ sung. Hãy đảm bảo rằng số lượng và số
+			lượng đặt hàng là chính xác.
+		</div>
+		@if (Model.Count() > 0)
+		{
+			<div class="hidden sm:block border-t border-mercury_gray">
+				<div class="mt-[50px]">
+					<table class="w-full border border-mercury_gray">
+						<thead>
+							<tr class="border-b border-mercury_gray bg-very_light_gray text-black h-[55px] text-[13px]">
+								<th class="w-[320px] font-[500]">Số tiền mua sản phẩm</th>
+								<th class="w-[200px] font-[500]">Phí vận chuyển</th>
+								<th class="sm:w-[550px] text-right pr-[110px] font-[500]">Số tiền thanh toán cuối cùng</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="text-[13px] text-dark_grey_999">
+								<td class="text-center h-[100px]" data-format-money="@ViewBag.totalAllProducts">0 VND</td>
+								<td class="text-center">0 VND</td>
+								<td class="pr-[110px] text-right text-[20px] text-black font-bold">
+									<span class="text-[35px] only:text-rosy_pink mr-2" data-format-money="@ViewBag.totalAllProducts">0</span>VND
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="sm:hidden block">
+				<div class="border-t border-mercury_gray">
+					<div class="mt-[50px]">
+						<div class="p-[20px] w-full bg-very_light_gray border border-mercury_gray">
+							<div class="bg-white border border-mercury_gray">
+								<div class="flex p-[8px]">
+									<div class="flex-1">Số tiền mua sản phẩm:</div>
+									<div class="text-dark_grey_999" data-format-money="@ViewBag.totalAllProducts">0 VND</div>
+								</div>
+								<div class="flex p-[8px] mb-3">
+									<div class="flex-1">Phí vận chuyển:</div>
+									<div class="text-dark_grey_999">0 VND</div>
+								</div>
+								<div class="flex items-center border-t border-dashed border-very_light_gray_2 p-[8px]">
+									<div class="flex-1">Số tiền thanh toán cuối cùng:</div>
+									<div class="text-black font-bold">
+										<span class="text-[35px] only:text-rosy_pink mr-2" data-format-money="@ViewBag.totalAllProducts">0</span>
+										VND
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+	@if (Model.Count() > 0)
+	{
+		<div class="text-center mt-[50px]">
+			<a href="/order"
+				 type="button"
+				 class="bg-rosy_pink font-bold text-white text-[20px] h-[85px] w-[156px] leading-[85px]">
+				Đặt hàng
+			</a>
+		</div>
+	}
+</section>
+

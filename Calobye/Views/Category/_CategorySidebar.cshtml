@@ -1,0 +1,9 @@
+﻿@using Calobye.Models
+@model List<CATEGORY>
+
+<div class="border-t text-xs">
+	@foreach (var category in Model)
+	{
+	<a href="/category/@category.SLUG" class="flex border-b py-2 items-center bg-very_light_gray text-grey_999 px-4">@category.TITLE</a>
+	}
+</div>

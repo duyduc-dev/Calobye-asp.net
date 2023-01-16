@@ -1,0 +1,42 @@
+﻿@model List<Calobye.Models.PRODUCT>
+
+@{
+	Func<int, string> amount = (int i) => i < 10 ? $"0{i + 1}" : $"{i + 1}";
+}
+
+<div id="swiper-product" class="overflow-hidden">
+	<!-- Additional required wrapper -->
+	<div class="swiper-wrapper">
+		<!-- Slides -->
+		@for (var i = 0; i < Model.Count(); ++i)
+		{
+			<div class="swiper-slide">
+				<a href="@Url.Action("Index", "Product", new {slug = @Model.ElementAt(i).SLUG})" class="block max-w-[260px]">
+					<p class="font-[700] text-xl italic">@amount(i)</p>
+					<img src="~/Assets/images/product/@Model.ElementAt(i).THUMBNAIL" alt="" class="h-[280px] object-contain" />
+					<div class="flex flex-col px-[10px]">
+						<p class="mt-[20px] mb-[5px] text-[15px] text-two-line">@Model.ElementAt(i).TITLE</p>
+						<p class="mb-[10px] text-[12px] text-grey_333 font-[700] h-[36px] text-two-line">
+							@Model.ElementAt(i).DESCRIPTION
+						</p>
+						<p class="text-judge_grey text-right text-[20px] leading-[1] font-[700]" data-format-money="@Model.ElementAt(i).PRICE">0</p>
+					</div>
+				</a>
+			</div>
+		}
+	</div>
+
+	<!-- navigation buttons -->
+	<div class="hidden md:block">
+		<div class="swiperPrev-product absolute top-1/2 z-[10] left-4 !text-[30px] -translate-y-1/2">
+			<div class="text-judge_grey font-[300]">
+				<i class="fa-solid fa-chevron-left"></i>
+			</div>
+		</div>
+		<div class="swiperNext-product absolute top-1/2 z-[10] !text-[30px] -translate-y-1/2 right-4">
+			<div class="text-judge_grey font-[300]">
+				<i class="fa-solid fa-chevron-right"></i>
+			</div>
+		</div>
+	</div>
+</div>

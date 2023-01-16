@@ -1,0 +1,143 @@
+﻿@using Calobye.Services
+@{
+	var isLogin = AuthService.isLogin();
+	var currentAuth = AuthService.getAuth();
+}
+
+<div class="relative">
+	<!-- Begin: Header inner -->
+	<header class="bg-white relative z-[100]">
+		<div class="custom_xl:w-75 custom_xl:mx-auto custom_xl:px-0 xl:py-[45px] px-4 py-5">
+			<div class="flex items-center justify-between h-full">
+				<!-- Begin: Menu on mobile -->
+				<div class="flex items-center sm:hidden">
+					<div>
+						<div onclick-show-sidebar class="w-[20px] h-[15px] cursor-pointer">
+							<img src="~/Assets/icon/menu-icon-mobile.png" alt="" class="w-full h-full" />
+						</div>
+					</div>
+					<div>
+						<div onclick-search-mobile class="w-[24px] ml-7 cursor-pointer">
+							<img src="~/Assets/icon/search_mobile_icon.png" alt="" class="w-full h-full" />
+						</div>
+					</div>
+				</div>
+				<!-- End: Menu on mobile -->
+				<!-- Begin: Logo calobye -->
+				<div class="sm:mr-5 ml-5 sm:ml-0 flex-1 xl:flex-none sm:block flex items-center justify-center">
+					<a href="/" class="block sm:h-[50px] sm:w-auto mx-auto w-[50%]">
+						<img src="~/Assets/images/logo-calobye.png" class="h-full" alt="" />
+					</a>
+				</div>
+				<!-- End: Logo calobye -->
+				<!-- Begin: Header search -->
+				<form action="@Url.Action("search", "Product")" class="sm:w-[350px] mr-4 relative">
+					<input type="text"
+								 name="q"
+								 placeholder="Chào bạn! Bạn tìm gì hôm nay?"
+								 class="p-3.5 pr-12 bg-white_smoke text-base text-grey_99 w-full hidden sm:block outline-none" 
+								 autocomplete="off"
+					/>
+					<button type="submit" class="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer">
+						<img src="~/Assets/icon/search.gif" alt="..."  />
+					</button>
+				</form>
+				<!-- End: Header search -->
+				<!-- Begin: login,  logout -->
+				<div class="flex-1 xl:flex items-center justify-center hidden">
+					@if (isLogin)
+					{
+						<div>
+							<a href="@Url.Action("Index", "User")" class="text-rosy_pink font-bold ">@($"{currentAuth.FIRST_NAME} {currentAuth.LAST_NAME}")</a>
+						</div>
+					}
+					else
+					{
+						<div class="text-grey">
+							<a href="@Url.Action("login", "Auth")" class="!text-rose-400">Đăng nhập</a>
+							&nbsp;| &nbsp;
+							<a href="/auth/register">Đăng ký</a>
+						</div>
+					}
+
+				</div>
+				<!-- End: login,  logout -->
+
+				<!-- Begin: Header Menu -->
+				<div class="flex-1 xl:flex-none justify-end items-center gap-x-6 hidden md:flex">
+					<div class="w-[41px] h-[40px] btn-user cursor-pointer">
+						<img src="~/Assets/icon/user.gif" class="w-full h-full" alt="" />
+					</div>
+					@Html.Action("_CartAmountDesktop", "Cart")
+					<div class="w-[41px] h-[40px]">
+						<img src="~/Assets/icon/help_icon.gif" class="w-full h-full" alt="" />
+					</div>
+				</div>
+				<!-- End: Header Menu -->
+
+				<!-- Begin: Header menu - mobile -->
+				<div class="flex items-center h-full">
+					@Html.Action("_CartAmountMobile", "Cart")
+					<div class="w-[30px] block md:hidden btn-user">
+						<img src="~/Assets/icon/user-mobile.gif" alt="" />
+					</div>
+				</div>
+				<!-- End: Header menu - mobile -->
+			</div>
+		</div>
+
+		<!-- Begin: border nav -->
+		<div class="border-t-[1px] border border-white_smoke_2 w-full"></div>
+		<!-- End: border nav -->
+		<!-- Begin: Nav header -->
+		<div class="relative">
+			<div id="nav-border-active"
+					 class="absolute bottom-0 w-full h-0.5 transition-all duration-300 bg-rosy_pink z-[100]"></div>
+			<!-- Begin: nav -->
+			<div class="max-h-[75px] custom_xl:max-w-75 mx-auto flex items-center">
+				<!-- Begin: Icon menu -->
+				<div data-header-nav-menu="nav-menu"
+						 class="hidden lg:block h-[75px] min-w-[75px] transition-all duration-300 overflow-hidden cursor-pointer">
+					<div id="wrap-item"
+							 class="w-full h-full flex flex-col justify-center items-center gap-[10px] transition-all duration-300 rotate-[0deg]">
+						<span class="item w-[32px] h-[2px] bg-rosy_pink"></span>
+						<span class="item w-[32px] h-[2px] bg-rosy_pink"></span>
+						<span class="item w-[32px] h-[2px] bg-rosy_pink"></span>
+					</div>
+				</div>
+				<!-- End: Icon menu -->
+				<!-- Begin: Nav content -->
+				<div class="relative flex-1 w-full">
+					@Html.Action("_CategoryNav", "Category")
+					<!-- Begin: ... -->
+					<div class="absolute w-full h-full top-0 pointer-events-none">
+						<div class="absolute bg-gradient-to-l from-unknown_1 to-white top-0 left-0 h-[50px] w-[50px]"></div>
+						<div class="absolute bg-gradient-to-r from-unknown_1 to-white top-0 right-[50px] lg:right-0 lg:hidden h-[50px] w-[50px]"></div>
+						<!-- Begin: show full category nav -->
+						<div data-header-nav-arrow="nav-arrow"
+								 class="absolute flex items-center bg-white lg:hidden top-0 bottom-0 pl-2 pr-8 right-0 cursor-pointer select-none pointer-events-auto">
+							<div class="w-[15px]">
+								<img id="arrow-down" src="~/Assets/icon/arrow_down_icon.png" alt="" class="w-full" />
+								<img id="arrow-up" src="~/Assets/icon/arrow_up_icon.png" alt="" class="w-full hidden" />
+							</div>
+						</div>
+						<!-- End: show full category nav -->
+					</div>
+					<!-- End: ... -->
+				</div>
+				<!-- End: Nav content -->
+			</div>
+			<!-- End: nav -->
+		</div>
+		<!-- End: Nav header -->
+	</header>
+	<!-- End: Header inner -->
+
+	<!-- Begin: Categories -->
+	@Html.Action("_CategoryNavShowDetail", "Category")
+	<!-- End: Categories -->
+
+	<!-- Begin: show full categories on tablet, mobile -->
+	@Html.Action("_CategoryShowNavMobile", "Category")
+	<!-- End: show full categories on tablet, mobile -->
+</div>

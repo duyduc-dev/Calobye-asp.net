@@ -1,0 +1,265 @@
+﻿
+@{
+	ViewBag.Title = "Calobye - Viet nam";
+}
+
+<section class="pb-20">
+	<!-- ! RENDER_BODY() -->
+	<!-- Begin: Slider banner -->
+	<div class="overflow-hidden">
+		<!-- Slider main container -->
+		<div id="swiper" class="w-full relative hidden md:block">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide">
+					<img src="~/Assets/images/slide-banner/1.jpg" alt="" class="swiper-lazy" />
+				</div>
+				<div class="swiper-slide">
+					<img src="~/Assets/images/slide-banner/2.jpeg" alt="" class="swiper-lazy" />
+				</div>
+				<div class="swiper-slide">
+					<img src="~/Assets/images/slide-banner/3.jpg" alt="" class="swiper-lazy" />
+				</div>
+			</div>
+			<!-- If we need pagination -->
+			<!-- If we need navigation buttons -->
+			<div class="flex absolute bottom-5 left-1/2 -translate-x-1/2 z-[10]">
+				<div class="flex relative">
+					<div class="swiper-btn-prev absolute top-1/2 -translate-y-1/2 left-2 !text-white !z-[2]">
+						<div class="">
+							<i class="fa-solid fa-chevron-left"></i>
+						</div>
+					</div>
+					<div class="swiper-pagination relative !bottom-auto !left-auto text-white z-[1] pointer-events-none"></div>
+					<div class="swiper-btn-next absolute top-1/2 -translate-y-1/2 right-2 !text-white !z-[2]">
+						<div>
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- If we need scrollbar -->
+			<!-- <div class="swiper-scrollbar"></div> -->
+		</div>
+		<div class="md:hidden block">
+			<img src="~/Assets/images/slide-banner/mobile-banner.jpg" alt="" />
+		</div>
+	</div>
+	<!-- End: Slider banner -->
+	<!-- Begin: Slider product noi-bat-->
+	<div class="overflow-hidden py-6 my-10">
+		<h3 class="font-[700] text-[23px] flex justify-start md:justify-center mb-[30px] px-4">
+			<div class="flex items-center">
+				<div class="w-[20px] mr-2 md:hidden">
+					<img src="~/Assets/icon/calobye_active.png" alt="" class="w-full" />
+				</div>
+				Sản phẩm nổi bật
+			</div>
+		</h3>
+		<!-- Slider main container -->
+		<div class="w-full relative max-w-75 mx-auto overflow-hidden px-4 md:px-14">
+			@Html.Action("_HomePageFeaturedProducts", "Product")
+		</div>
+		<div class="flex justify-center md:hidden">
+			<a href="@Url.Action("Index", "Category", new {slug = "san-pham-noi-bat"})"
+				 class="text-rosy_pink border rounded-[20px] p-2.5 text-xs mt-6 gap-1 flex items-center justify-center w-[150px] border-rosy_pink">
+				Xem thêm +
+			</a>
+		</div>
+	</div>
+	<!-- End: Slider product -->
+	<!-- Begin: slider new product -->
+	<div class="overflow-hidden py-6 my-10">
+		<h3 class="font-[700] text-[23px] flex justify-start md:justify-center mb-[30px] px-4">
+			<div class="flex items-center">
+				<div class="w-[20px] mr-2 md:hidden">
+					<img src="~/Assets/icon/calobye_active.png" alt="" class="w-full" />
+				</div>
+				Sản phẩm mới
+			</div>
+		</h3>
+		<!-- Slider main container -->
+		<div class="w-full relative max-w-75 mx-auto overflow-hidden px-4 md:px-14">
+			@Html.Action("_HomePageNewProducts", "Product")
+
+		</div>
+
+	</div>
+	<!-- End: slider new product -->
+	<!-- Begin: product dac-biet -->
+	<div class="overflow-hidden py-6 my-10">
+		<h3 class="font-[700] text-[23px] flex justify-start md:justify-center mb-[30px] px-4 relative">
+			<div class="flex items-center">
+				<div class="w-[20px] mr-2 md:hidden">
+					<img src="~/Assets/icon/calobye_active.png" alt="" class="w-full" />
+				</div>
+				Sản phẩm đặc biệt
+			</div>
+		</h3>
+		<!-- Slider main container -->
+		<div class="w-full relative max-w-75 mx-auto overflow-hidden px-4 md:px-14">
+
+			@Html.Action("_HomePageSpecialProduct", "Product")
+		</div>
+
+	</div>
+	<!-- End: product dac-biet -->
+	<!-- Begin: Calobye video -->
+	<div class="w-full relative max-w-75 mx-auto overflow-hidden px-4 md:px-14 flex gap-2">
+		<div class="border mx-auto p-6 md:w-8/12 w-full">
+			<h3 class="text-[20px] font-bold mb-4">Calobye Video</h3>
+			<div>
+				<iframe width="100%"
+								src="https://www.youtube.com/embed/kkIcg9yXlGs"
+								title="YouTube video player"
+								frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen
+								class="md:h-[500px] !h-[300px]"></iframe>
+			</div>
+		</div>
+		<div class="border p-6 w-4/12 h-full md:block hidden">
+			<h3 class="text-[20px] font-bold mb-4">Trung tâm CSKH</h3>
+			<div class="text-center">
+				<span class="text-[#e63d72] text-[40px] font-bold">0946 407 647</span>
+				<div class="h-[1px] w-2/12 mx-auto bg-judge_grey"></div>
+				<span class="text-[10px] leading-[14px] text-dark_grey_999">
+					GIỜ MỞ CỬA 08:00 - 17:00 <br />
+					NGHỈ CHỦ NHẬT, NGÀY LỄ
+				</span>
+			</div>
+		</div>
+	</div>
+	<!-- End: Calobye video -->
+	<!-- Begin: doi-tac-phan-phoi  -->
+	<div class="mt-5">
+		<h3 class="font-[700] text-[23px] flex justify-start md:justify-center mb-[30px] px-4 relative">
+			<div class="flex items-center">
+				<div class="w-[20px] mr-2 md:hidden">
+					<img src="~/Assets/icon/calobye_active.png" alt="" class="w-full" />
+				</div>
+				Đối tác phân phối
+			</div>
+			<button id="btn-see-distribution"
+							class="md:hidden absolute top-1/2 -translate-y-1/2 right-0 p-2.5 text-[15px] font-[400]">
+				+ Xem hết
+			</button>
+		</h3>
+		<!-- Begin: screen < 768px -->
+		<div class="w-full relative max-w-75 mx-auto overflow-hidden px-4 md:px-14">
+			<div id="distribution-partner" class="md:hidden grid grid-cols-3 gap-2.5">
+				<a href="#">
+					<div class="rounded-full overflow-hidden border-2">
+						<img src="~/Assets/images/distribution-partner/heros-fitness-yoga.jpg" class="object-contain" alt="" />
+					</div>
+				</a>
+
+				<a href="#">
+					<div class="rounded-full overflow-hidden border-2">
+						<img src="~/Assets/images/distribution-partner/vantri-golf-club.png" class="object-contain" alt="" />
+					</div>
+				</a>
+
+				<a href="#">
+					<div class="rounded-full overflow-hidden border-2">
+						<img src="~/Assets/images/distribution-partner/tiki.png" class="object-contain" alt="" />
+					</div>
+				</a>
+			</div>
+			<div id="swiper-distribution-partner" class="hidden md:block overflow-hidden">
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					<!-- Slides -->
+
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/ecofit.png" class="object-contain w-full h-full" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/heros-fitness-yoga.jpg"
+										 class="object-contain w-full h-full"
+										 alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/ium-global.png" class="object-contain w-full h-full" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/king-fitness.png" class="object-contain w-full h-full" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/lazada.png" class="object-contain w-full h-full" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/shopee.png" class="object-contain w-full h-full" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/tiki.png" class="object-contain w-full h-full" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="flex justify-center">
+							<div class="rounded-full overflow-hidden border-2 max-w-[168px] h-[168px]">
+								<img src="~/Assets/images/distribution-partner/vantri-golf-club.png"
+										 class="object-contain w-full h-full"
+										 alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- navigation buttons -->
+				<div class="hidden md:block">
+					<div class="swiperPrev-product absolute top-1/2 z-[10] left-4 !text-[30px] -translate-y-1/2">
+						<div class="text-judge_grey font-[300]">
+							<i class="fa-solid fa-chevron-left"></i>
+						</div>
+					</div>
+					<div class="swiperNext-product absolute top-1/2 z-[10] !text-[30px] -translate-y-1/2 right-4">
+						<div class="text-judge_grey font-[300]">
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End: screen -->
+	</div>
+	<!-- End: doi-tac-phan-phoi  -->
+</section>
+
+@section swiper {
+	<link rel="stylesheet" href="~/Assets/lib/swiper@8/swiper@8.css" />
+}
+
+@section scripts {
+	<script type="module" src="~/Assets/js/pages/HomePage.js"></script>
+}
+

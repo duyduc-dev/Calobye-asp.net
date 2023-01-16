@@ -1,0 +1,92 @@
+﻿@model Calobye.Models.CUSTOMER
+@{
+	ViewBag.Title = "Detail Customer";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main transitrion">
+	<div class="pagetitle">
+		<h1>Detail Customer</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Customer")">Customer</a></li>
+				<li class="breadcrumb-item active">@Model.USER_NAME</li>
+			</ol>
+		</nav>
+	</div>
+	<section class="section profile">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body pt-3">
+
+						<a href="@Url.Action("Index", "Customer")" class="btn btn-primary">
+							<i class="ri-arrow-go-back-line"></i>
+						</a>
+						<div class="profile-edit pt-3" id="profile-edit">
+							<div class="row mb-3">
+								<label for="customer_id" class="col-md-4 col-lg-3 col-form-label">Customer ID</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.ID</div>
+								</div>
+							</div>
+
+							<div class="row mb-3">
+								<label for="lastname" class="col-md-4 col-lg-3 col-form-label">User name</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.USER_NAME</div>
+								</div>
+							</div>
+
+							<div class="row mb-3">
+								<label for="firstname" class="col-md-4 col-lg-3 col-form-label">First name</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.FIRST_NAME</div>
+								</div>
+							</div>
+
+							<div class="row mb-3">
+								<label for="lastname" class="col-md-4 col-lg-3 col-form-label">Last name</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.LAST_NAME</div>
+								</div>
+							</div>
+
+							<div class="row mb-3">
+								<label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.EMAIL</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.PHONE_NUMBER</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<label for="phone" class="col-md-4 col-lg-3 col-form-label">Order Address</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.ORDER_ADDRESS</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<label for="phone" class="col-md-4 col-lg-3 col-form-label">Time Created</label>
+								<div class="col-md-8 col-lg-9">
+									<div class="d-flex align-items-center h-100">@Model.time_create</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</main>
+
+@section styles{
+	<link href="~/Areas/Admin/Assets/css/main.css" rel="stylesheet" />
+}
+

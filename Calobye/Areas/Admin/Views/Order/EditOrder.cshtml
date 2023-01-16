@@ -1,0 +1,177 @@
+﻿@using System.Globalization 
+@using Calobye.Constants
+@model Calobye.Models.OrderManagement
+@{
+	ViewBag.Title = "Detail Order";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+	Func<string, string> money = (string num) =>
+	{
+		CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
+		return double.Parse(num).ToString("#,###", cul.NumberFormat);
+	};
+}
+
+
+<main id="main" class="main transitrion">
+	<div class="pagetitle">
+		<h1>Detail Order</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Order")">Order</a></li>
+				<li class="breadcrumb-item active">@Model.ID</li>
+			</ol>
+		</nav>
+	</div>
+	<section class="section profile">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body pt-3">
+						<a href="@Url.Action("Index", "Order")" class="btn btn-primary">
+							<i class="ri-arrow-go-back-line"></i>
+						</a>
+						<div class="profile-edit pt-3" id="profile-edit">
+							@using (Html.BeginForm("EditOrder", "Order", new { area = "Admin", order_id = Model.ID }, FormMethod.Post))
+							{
+								@Html.AntiForgeryToken()
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Order ID</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">
+											@Model.ID
+										</div>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Customer</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">
+											@Model.customer.FIRST_NAME @Model.customer.LAST_NAME
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">User Name</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">
+											@Model.customer.USER_NAME
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Email</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">
+											@Model.customer.EMAIL
+										</div>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">
+											@Model.customer.PHONE_NUMBER
+										</div>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Address</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">
+											@Model.customer.ORDER_ADDRESS
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Time Order</label>
+									<div class="col-md-8 col-lg-9">
+										<div class="d-flex align-items-center h-100">
+											@Model.dateOrder
+										</div>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label mb-md-0 mb-4">Products</label>
+									<div class="col-md-8 col-lg-9">
+										@foreach (var item in Model.listOrderDetail)
+										{
+
+											<div class="mb-4">
+												<div class="row">
+													<div class="col-xl-6 col-12 d-flex align-items-center ">
+														<div class="">
+															<img src="~/Assets/images/product/@item.PRODUCT.THUMBNAIL" alt="Alternate Text" class="box-shadow" />
+														</div>
+														<div class="ms-4">
+															@item.PRODUCT.TITLE
+														</div>
+													</div>
+													<div class="col-xl-6 col-12 mt-xl-0 mt-2 d-flex align-items-center">
+														<div class="">
+															<span>Amount: </span> @item.AMOUNT
+														</div>
+														<div class="ms-3">
+															<span class="">Price: </span>@money((item.PRODUCT.PRICE * item.AMOUNT).ToString())
+														</div>
+													</div>
+												</div>
+											</div>
+										}
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Total</label>
+									<div class="col-md-8 col-lg-9 fw-bold">
+										<div class="d-flex align-items-center h-100">
+											@money(Convert.ToString(Model.totalOrder)) <span>VND</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Paid</label>
+									<div class="col-md-8 col-lg-9 ">
+										<select class="form-select" name="isPaid" aria-label="Default select example">
+											<option @(Model.isPaid ? "selected" : "") value="1">@Paid.PAID_EN</option>
+											<option @(Model.isPaid ? "" : "selected") value="0">@Paid.UNPAID_EN</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="thumbnail" class="col-md-4 col-lg-3 col-form-label">Delivery status</label>
+									<div class="col-md-8 col-lg-9 ">
+										<select class="form-select" name="deliveryStatus" aria-label="Default select example">
+											<option @(Model.deliveryStatus ? "" : "selected") value="0">@DeliveryStatus.NOT_RECEIVED_EN</option>
+											<option @(Model.deliveryStatus ? "selected" : "") value="1">@DeliveryStatus.RECEIVED_EN</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary">Save changes</button>
+								</div>
+
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</main>
+
+@section styles{
+	<link href="~/Areas/Admin/Assets/css/main.css" rel="stylesheet" />
+}

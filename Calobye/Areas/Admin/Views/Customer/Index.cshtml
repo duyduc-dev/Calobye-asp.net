@@ -1,0 +1,75 @@
+﻿@model List<Calobye.Models.CUSTOMER>
+@{
+	ViewBag.Title = "Customer";
+	ViewBag.customerActive = "active";
+	Func<int, Calobye.Models.CUSTOMER> item = (int i) => Model.ElementAt(i);
+}
+
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h1>Customer Management</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+				<li class="breadcrumb-item active">Customer</li>
+			</ol>
+		</nav>
+	</div>
+	<section class="section">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="d-flex align-items-center justify-content-between">
+							<h5 class="card-title">Customer</h5>
+
+						</div>
+
+						<table class="table datatable">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Customer</th>
+									<th scope="col">Email</th>
+									<th scope="col">User name</th>
+									<th scope="col">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (int i = 0; i < Model.Count; ++i)
+								{
+									<tr>
+										<th scope="row" style="vertical-align: middle">@(i + 1)</th>
+										<td style="vertical-align: middle">
+											@item(i).FIRST_NAME @item(i).LAST_NAME
+										</td>
+										<td style="vertical-align: middle">@item(i).EMAIL</td>
+										<td style="vertical-align: middle">@item(i).USER_NAME</td>
+										<td style="vertical-align: middle">
+											<div class="dropdown">
+												<a class="btn bg-white border dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+													Action
+												</a>
+												<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+													<li><a href="@Url.Action("EditCustomer", "Customer", new {customer_id=item(i).ID} )" class="dropdown-item">Detail</a></li>
+													<li><a href="@Url.Action("DeleteCustomer", "Customer", new {customer_id=item(i).ID} )" class="dropdown-item">Delete</a></li>
+
+												</ul>
+
+											</div>
+										</td>
+									</tr>
+
+								}
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</main>
+

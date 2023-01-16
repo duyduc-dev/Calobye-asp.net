@@ -1,0 +1,122 @@
+﻿@using Calobye.Services
+@model List<Calobye.Models.Cart>
+@{
+	ViewBag.Title = "Đặt hàng - Calobye";
+	var auth = AuthService.getAuth();
+	var cart = CartService.getCart();
+}
+
+<section>
+	<div class="custom_xl:w-75 mx-3 custom_xl:mx-auto">
+		<div class="mt-[80px]">
+			<div class="relative flex text-left flex-row items-center">
+				<h3 class="text-xl text-dark_charcoal_gray pl-[13px] font-bold border-l-3 border-l-dark_charcoal_gray">
+					Chi tiết đặt hàng
+				</h3>
+				<div class="flex items-center">
+					<label for=":r1:"
+								 class="ml-2.5 pl-2.5 border-l border-mercury_gray text-[15px] text-light_gray font-normal leading-5 select-none cursor-pointer">DETAIL ORDER</label>
+				</div>
+			</div>
+		</div>
+		<div class="border bg-very_light_gray mt-5 p-5">
+			<div class="">
+				<p class="font-bold">Họ tên: <span class="text-rosy_pink">@(auth.FIRST_NAME + " " + auth.LAST_NAME)</span></p>
+				<p class="font-bold mt-1">Số điện thoại: <span class="font-normal">@auth.PHONE_NUMBER</span></p>
+				<p class="font-bold mt-1 truncate">Email: <span class="font-normal">@auth.EMAIL</span></p>
+				<p class="font-bold mt-1">
+					Địa chỉ đặt hàng: <span class="font-normal">@auth.ORDER_ADDRESS</span>
+				</p>
+				<p class="font-bold mt-1">Đơn hàng có: <span class="font-normal">@cart.Count sản phẩm</span></p>
+			</div>
+			<div>
+				<a href="/user/edit" class="inline-block bg-white text-sm p-2 border mt-2">Chỉnh sửa thông tin</a>
+			</div>
+		</div>
+		<div class="mt-[20px] p-[20px] sm:p-[45px] border bg-very_light_gray">
+			<!-- !product cart -->
+			@foreach (var i in Model)
+			{
+			<div class="bg-white mt-2">
+				<!-- Begin: Have product 1 -->
+				<div class="border">
+					<div class="">
+						<div class="flex md:flex-row flex-col">
+							<div class="pt-[10px] pl-[28px] pr-[20px]">
+								<img src="~/Assets/images/product/@i.Product.THUMBNAIL" alt="" class="w-[102px] h-[102px] object-contain" />
+							</div>
+							<div class="pl-[20px] pr-5 flex-1 text-dark_charcoal_gray text-[14px] font-[600] flex items-center md:mt-0 mt-3">
+								@i.Product.TITLE
+							</div>
+							<div class="pl-[20px] flex items-center font-bold text-[14px] md:mt-0 mt-3">
+								<span class="text-rosy_pink mr-2">Số lượng:</span> @i.amount
+							</div>
+							<div class="pr-[20px] flex items-center justify-end md:justify-start border-t md:border-t-0 mt-5 md:mt-0 py-5 md:py-0">
+								<div class="text-[12px] text-dark_grey_999">
+									<span class="text-[20px] text-rosy_pink font-bold md:border-l-2 ml-3 border-dark_grey_999 pl-5" data-format-money="@i.total"></span>VND
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End: Have product 1 -->
+			</div>
+
+			}
+
+
+		</div>
+
+		<div class="hidden sm:block border-t border-mercury_gray">
+			<div class="mt-[50px]">
+				<table class="w-full border border-mercury_gray">
+					<thead>
+						<tr class="border-b border-mercury_gray bg-very_light_gray text-black h-[55px] text-[13px]">
+							<th class="w-[320px] font-[500]">Số tiền mua sản phẩm</th>
+							<th class="w-[200px] font-[500]">Phí vận chuyển</th>
+							<th class="sm:w-[550px] text-right pr-[110px] font-[500]">Số tiền thanh toán cuối cùng</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-[13px] text-dark_grey_999">
+							<td class="text-center h-[100px]" data-format-money="@ViewBag.totalAllProduct">0 VND</td>
+							<td class="text-center">0 VND</td>
+							<td class="pr-[110px] text-right text-[20px] text-black font-bold">
+								<span class="text-[35px] only:text-rosy_pink mr-2" data-format-money="@ViewBag.totalAllProduct">0</span>VND
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="sm:hidden block">
+			<div class="border-t border-mercury_gray">
+				<div class="mt-[50px]">
+					<div class="p-[20px] w-full bg-very_light_gray border border-mercury_gray">
+						<div class="bg-white border border-mercury_gray">
+							<div class="flex p-[8px]">
+								<div class="flex-1">Số tiền mua sản phẩm:</div>
+								<div class="text-dark_grey_999" data-format-money="@ViewBag.totalAllProduct">0 VND</div>
+							</div>
+							<div class="flex p-[8px] mb-3">
+								<div class="flex-1">Phí vận chuyển:</div>
+								<div class="text-dark_grey_999">0 VND</div>
+							</div>
+							<div class="flex items-center border-t border-dashed border-very_light_gray_2 p-[8px]">
+								<div class="flex-1">Số tiền thanh toán cuối cùng:</div>
+								<div class="text-black font-bold"><span class="text-[35px] only:text-rosy_pink mr-2" data-format-money="@ViewBag.totalAllProduct">0</span>VND</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="my-[50px] flex justify-center">
+		<a href="/order/success"
+			 class="block bg-rosy_pink font-bold text-white text-[20px] h-[85px] w-[156px] leading-[85px] text-center">
+			Mua ngay
+		</a>
+	</div>
+</section>
+

@@ -1,0 +1,19 @@
+﻿@{ 
+	Func<string, string> LinkActive = (string str) =>
+	{
+		return str == "active" ? "" : "collapsed";
+	};
+}
+
+<aside id="sidebar" class="sidebar">
+	<ul class="sidebar-nav" id="sidebar-nav">
+		<li class="nav-item"> <a class="nav-link @LinkActive(ViewBag.homeActive)" href="@Url.Action("Index", "Home")"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
+
+		<li class="nav-heading">Modules</li>
+		<li class="nav-item"> <a class="nav-link @LinkActive(ViewBag.sidebarActive)" href="@Url.Action("Index", "Product")"> <i class="ri-product-hunt-line"></i> <span>Products</span> </a></li>
+		<li class="nav-item"> <a class="nav-link @LinkActive(ViewBag.orderActive)" href="@Url.Action("Index", "Order")"> <i class="bi bi-cart2"></i> <span>Orders</span> </a></li>
+		<li class="nav-item"> <a class="nav-link @LinkActive(ViewBag.categoryActive)" href="@Url.Action("Index", "Category")"> <i class="bx bx-category-alt"></i> <span>Category</span> </a></li>
+		<li class="nav-item"> <a class="nav-link @LinkActive(ViewBag.adminActive)" href="@Url.Action("Index", "Admin")"> <i class="ri ri-admin-line"></i> <span>Admin Management</span> </a></li>
+		<li class="nav-item"> <a class="nav-link @LinkActive(ViewBag.customerActive)" href="@Url.Action("Index", "Customer")"> <i class="bi bi-person"></i> <span>Customer Management</span> </a></li>
+	</ul>
+</aside>

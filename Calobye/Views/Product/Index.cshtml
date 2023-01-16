@@ -1,0 +1,81 @@
+﻿@model Calobye.Models.PRODUCT
+@{
+    ViewBag.Title = $"{Model.TITLE} - Calobye";
+}
+
+<section class="bg-slate-50">
+	<!-- ! RENDER_BODY() -->
+	<div class="md:py-[50px]">
+		<div class="md:flex justify-between items-center custom_xl:w-75 gap-5 mx-auto py-[55px] md:px-[50px] bg-white">
+			<div class="relative flex-1 w-full h-[300px] md:w-[600px] md:h-[600px]">
+				<img src="~/Assets/images/product/@Model.THUMBNAIL" alt="" class="w-full h-full object-contain" />
+			</div>
+			<div class="flex-1 p-5 md:p-0">
+				<h3 class="text-[23px]">@Model.TITLE</h3>
+				<h5 class="text-xs text-grey_text_88">@Model.DESCRIPTION</h5>
+				<div class="flex items-center w-max ml-auto">
+					<button id="btn-minus-amount" type="button" class="flex justify-center items-center gap-1 h-[60px]">
+						<img src="~/Assets/icon/minus_icon.gif" alt="" />
+					</button>
+					<div id="amount-product" class="w-[30px] h-[29px] text-center border-y">1</div>
+					<button id="btn-plus-amount" type="button" class="flex justify-center items-center gap-1 h-[60px]">
+						<img src="~/Assets/icon/plus_icon.gif" alt="" />
+					</button>
+				</div>
+				<div class="text-right text-xs border-t border-t-very_light_gray_2 py-5">
+					<table class="w-full md:ml-auto">
+						<tbody>
+							<tr class="text-text-dark_charcoal_gray">
+								<td class="text-left md:text-right">Giá áp dụng</td>
+								<td class="text-lg font-bold text-rosy_pink md:text-black" data-format-money="@Model.PRICE"></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="hidden md:flex justify-end items-center gap-1 mt-2"></div>
+
+					<form method="post" action="@Url.Action("AddProductToCart", "Cart")" class="flex justify-between items-center gap-5 mt-5">
+						<input type="hidden" name="idProduct" value="@Model.ID" />
+						<input name="amount" type="hidden" class="input-amount-product" value="1" />
+
+						<button id="bt-buy-now-mobile"
+										type="button"
+										class="btn-buy-now flex justify-center items-center gap-1 border_rosy-pink border border-very_light_gray_2 w-1/2 md:hidden h-[60px]">
+							Mua ngay
+							<svg stroke="currentColor"
+									 fill="currentColor"
+									 stroke-width="0"
+									 viewBox="0 0 512 512"
+									 color="#FF5B74"
+									 height="1em"
+									 width="1em"
+									 xmlns="http://www.w3.org/2000/svg"
+									 style="color: rgb(255, 91, 116)">
+								<path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+							</svg>
+						</button>
+						<button id="btn-buy-now"
+										type="button"
+										class="btn-buy-now block gap-1 border_rosy-pink border border-very_light_gray_2 hidden md:block w-1/2 bg-black text-white h-[60px]">
+							Mua ngay
+						</button>
+						<button id="btn-add-to-cart"
+										type="submit"
+										class="flex justify-center items-center gap-1 border_rosy-pink border border-very_light_gray_2 w-1/2 h-[60px]">
+							Thêm vào giỏ
+						</button>
+
+
+					</form>
+					<form action="@Url.Action("BuyProductNow", "Cart")" id="form-buy-now" method="post">
+						<input type="hidden" name="idProduct" value="@Model.ID" />
+						<input name="amount" type="hidden" class="input-amount-product" value="1" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+@section scripts {
+	<script type="module" src="~/Assets/js/pages/Product-detail.js"></script>
+}

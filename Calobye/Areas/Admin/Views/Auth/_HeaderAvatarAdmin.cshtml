@@ -1,0 +1,27 @@
+﻿@model Calobye.Models.admin
+
+
+<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+	<div class="avatar-header">
+		<img src="~/Areas/Admin/Assets/img/avatar-admin/@Model.avatar" style="object-fit: cover;" alt="Profile" class="w-100 h-100">
+	</div>
+	<span class="d-none d-md-block dropdown-toggle ps-2">@Model.lastname</span>
+</a>
+<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+	<li class="dropdown-header">
+		<h6>@Model.lastname</h6>
+		<span>Admin Calobye</span>
+	</li>
+	<li>
+		<hr class="dropdown-divider">
+	</li>
+	<li> <a class="dropdown-item d-flex align-items-center" href="@Url.Action("profile", "Auth", new {area = "Admin"})"> <i class="bi bi-person"></i> <span>My Profile</span> </a></li>
+	<li>
+		<hr class="dropdown-divider">
+	</li>
+	<li> <a class="dropdown-item d-flex align-items-center" href="@Url.Action("Index", "Home", new {area = ""})"> <i class="ri-pages-line"></i>  <span>Customer Page</span> </a></li>
+	<li>
+		<hr class="dropdown-divider">
+	</li>
+	<li> <a class="dropdown-item d-flex align-items-center" href="@Url.Action("signOut", "Auth", new {area = "Admin"})"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span> </a></li>
+</ul>

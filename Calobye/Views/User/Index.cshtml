@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Trang của tôi - Calobye";
+}
+
+<section class="pb-20">
+	<div class="relative custom_xl:w-75 flex justify-between text-[12px] py-[30px] px-4 custom_xl:mx-auto mx-3 my-4 border border-very_light_gray_2">
+		<h2 class="text-2xl font-bold flex items-center md:flex-row flex-col">
+			<div>
+				<span class="w-[3px] bg-black h-[20px] inline-block align-middle mr-[13px] mt-[-3px]"></span>
+				Trang của tôi
+			</div>
+		</h2>
+		<a href="@Url.Action("signout", "Auth")" class="ml-2 flex items-center justify-center md:hidden bg-rose-500 text-white font-bold py-2 px-4 rounded">
+			Đăng xuất
+		</a>
+	</div>
+	<div class="custom_xl:w-75 mx-3 custom_xl:mx-auto">
+		<div class="mt-[20px] p-[20px] sm:p-[45px] border bg-very_light_gray">
+			<div class="bg-white border">
+				<div class="flex flex-wrap items-center justify-center w-full bg-white px-5 py-5 border border-very_light_gray_2">
+					<!-- Begin: item profile -->
+					<div class="border bg-very_light_gray md:w-[220px] flex flex-col py-[16px] ml-2 mt-2">
+						<div class="flex justify-center">
+							<img src="~/Assets/icon/mypage-member-icon.png" alt="" />
+						</div>
+						<div class="text-center font-[600] text-[12px] mt-2">
+							<h5>PROFILE</h5>
+							<p>Sửa đổi thông tin thành viên</p>
+						</div>
+						<a class="mt-3 hover:border-very_light_gray_2 mx-2 md:mx-auto" href="@Url.Action("edit", "User")">
+							<img src="~/Assets/icon/view_more_bt.gif" alt="viewmore" />
+						</a>
+					</div>
+					<!-- End: item profile -->
+					<!-- Begin: item profile -->
+					<div class="border bg-very_light_gray md:w-[220px] flex flex-col py-[16px] ml-2 mt-2">
+						<div class="flex justify-center">
+							<img src="~/Assets/icon/mypage-board-icon.png" alt="" />
+						</div>
+						<div class="text-center font-[600] text-[12px] mt-2">
+							<h5>CHANGE PASSWORD</h5>
+							<p>Sửa đổi mật khẩu</p>
+						</div>
+						<a class="mt-3 hover:border-very_light_gray_2 mx-2 md:mx-auto" href="@Url.Action("changePassword", "User")">
+							<img src="~/Assets/icon/view_more_bt.gif" alt="viewmore" />
+						</a>
+					</div>
+					<!-- End: item profile -->
+					<!-- Begin: item profile -->
+					<div class="border bg-very_light_gray md:w-[220px] flex flex-col py-[16px] ml-2 mt-2">
+						<div class="flex justify-center">
+							<img src="~/Assets/icon/mypage-order-icon.png" alt="" />
+						</div>
+						<div class="text-center font-[600] text-[12px] mt-2">
+							<h5>ORDER</h5>
+							<p>Lịch sử đặt hàng</p>
+						</div>
+						<a class="mt-3 hover:border-very_light_gray_2 mx-2 md:mx-auto" href="@Url.Action("OrderHistory", "Order")">
+							<img src="~/Assets/icon/view_more_bt.gif" alt="viewmore" />
+						</a>
+					</div>
+					<!-- End: item profile -->
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

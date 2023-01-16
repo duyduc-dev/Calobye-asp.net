@@ -1,0 +1,93 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+:root {
+	--font-family: "Roboto", sans-serif;
+}
+
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+	*::selection {
+		background-color: rgba(241, 109, 149, 0.6862745098);
+		color: #fff;
+		fill: #fff;
+	}
+
+html {
+	font-family: var(--font-family);
+	scroll-behavior: smooth;
+}
+
+.swup-transition-fade {
+	transition: 0.4s;
+	opacity: 1;
+}
+
+html.is-animating .swup-transition-fade {
+	opacity: 0;
+}
+
+input,
+button,
+[tabindex] {
+	outline: none;
+	border-width: 0px;
+	background: transparent;
+}
+
+a[href] {
+	text-decoration: none;
+}
+
+.keep-scrolling {
+	overflow: scroll;
+}
+
+.scroll-hide::-webkit-scrollbar {
+	display: none;
+}
+
+html *::-webkit-scrollbar {
+	border-radius: 0;
+	width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+	border-radius: 0;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.text-two-line {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.border-l-3 {
+	border-left-width: 3px;
+}
+
+.text-cornflowerblue {
+	color: cornflowerblue;
+}
+
+.border-cornflowerblue {
+	border-color: cornflowerblue;
+}
+
+.text-orangered {
+	color: orangered;
+}
+
+.border-orangered {
+	border-color: orangered;
+}
+/*# sourceMappingURL=styles.css.map */
